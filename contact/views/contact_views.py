@@ -8,6 +8,7 @@ def index(request):
     # contact = Contact.objects.all
     context = {
         'contacts':contact,
+        'site_title': 'Contatos - '
     }
 
     # print(contact.query)
@@ -23,11 +24,12 @@ def contact(request, contact_id):
     # O get retorna um objeto. O filter retorna uma lista.
     # single_contact = Contact.objects.filter(pk=contact_id).first()
     single_contact = get_object_or_404(Contact, pk=contact_id, show=True)
-
+    site_title = f'{single_contact.first_name} {single_contact.last_name} - '
     print(single_contact)
     # contact = Contact.objects.all
     context = {
         'contact':single_contact,
+        'site_title':site_title
     }
 
     # print(contact.query)

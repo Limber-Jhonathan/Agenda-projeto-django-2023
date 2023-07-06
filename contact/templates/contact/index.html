@@ -1,5 +1,4 @@
 {% extends 'global/base.html' %}
-
 {% block content %}
     <div class="responsive_table">
         <table class="contacts-table">
@@ -20,7 +19,7 @@
                 {% for contact in contacts %}
                     <tr class="table-row">
                         <td class="table-cel">
-                            <a href="#" class="table-link">
+                            <a href="{% url 'contact:contactt' contact.id %}" class="table-link">
                                 {{contact.id}}
                             </a>
                         </td>

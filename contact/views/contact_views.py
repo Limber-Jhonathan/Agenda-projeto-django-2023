@@ -1,4 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+#https://docs.djangoproject.com/en/4.2/ref/models/querysets/#field-lookups
+from django.db.models import Q
 from contact.models import Contact
 from django.http import Http404
 
@@ -12,6 +14,34 @@ def index(request):
     }
 
     # print(contact.query)
+
+    return render(
+        request,
+        'contact/index.html',
+        context
+    )
+
+def search(request):
+    search_value = request.GET.get('q', '').strip()
+    print('Search Value:',search_value)
+    
+    if search_value == '':
+        return redirect('contact:index')
+
+    contacts = Contact.objects.filter(show=True).filter(
+        Q(first_name__icontains=search_value) | 
+        Q(last_name__icontains=search_value) |
+        Q(phone__icontains=search_value) |
+        Q(email__icontains=search_value)
+        ).order_by('-id')
+
+    print(contacts.query)
+
+    context = {
+        'contacts': contacts,
+        'site_title': 'Search - ',
+        'search_value': search_value
+    }
 
     return render(
         request,

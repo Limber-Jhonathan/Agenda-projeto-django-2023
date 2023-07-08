@@ -6,10 +6,20 @@ from contact.models import Contact
 
 
 def create(request):
-    post = request.POST
+
+    if request.method == 'POST':
+        print(request.method) 
+        search = request.POST.get('first_name')
+        search2 = request.POST.get('last_name')
+        print(search)
+        print(search2)
+
+    # post = request.POST
     context = {
 
     }
+
+    print(request.method) 
 
     return render(
         request,

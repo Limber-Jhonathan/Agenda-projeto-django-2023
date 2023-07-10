@@ -3,26 +3,25 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 
 from contact.models import Contact
-
+from contact.forms import ContactForm
 
 def create(request):
 
+    # print(request.POST)
     if request.method == 'POST':
-        print(request.method) 
-        search = request.POST.get('first_name')
-        search2 = request.POST.get('last_name')
-        print(search)
-        print(search2)
-
-    # post = request.POST
-    context = {
-
+        context = {
+        'form': ContactForm(request.POST)
     }
-
-    print(request.method) 
-
+        return render(
+            request,
+            'contact/create.html',
+            context
+        )
+    context = {
+        'form': ContactForm()
+        }
     return render(
         request,
         'contact/create.html',
         context
-    )
+        )

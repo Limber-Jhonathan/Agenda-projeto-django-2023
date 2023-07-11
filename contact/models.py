@@ -18,7 +18,7 @@ class Category(models.Model):
 
 class Contact(models.Model):
     first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50, blank=True)
     phone = models.CharField(max_length=50)
     # lembrando que o blank=True e opcional isso quer dizer que não e obigatorio prencher este campo
     email = models.EmailField(max_length=254, blank=True)

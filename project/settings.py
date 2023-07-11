@@ -111,6 +111,7 @@ LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'America/Sao_Paulo'
 
+#tradução
 USE_I18N = True
 
 USE_TZ = True
